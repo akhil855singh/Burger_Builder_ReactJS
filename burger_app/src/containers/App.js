@@ -1,22 +1,25 @@
-import React, { Component } from 'react'
-import Layout from "../components/Layout/Layout"
-import BurgerBuilder from "../containers/BurgerBuilder/BurgerBuilder"
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import Layout from '../components/Layout/Layout';
+import BurgerBuilder from '../containers/BurgerBuilder/BurgerBuilder';
+import Checkout from '../containers/Checkout/Checkout';
+import Orders from '../containers/Orders/Orders';
 
 class App extends Component {
-
-  constructor(props){
-    super(props)
-  }
-  
-
-  render() {
-    console.log("[App.js] render")
+  render () {
     return (
-      <Layout>
-      <BurgerBuilder/> 
-      </Layout>     
+      <div>
+        <Layout>
+          <Switch>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/orders" component={Orders} />
+            <Route path="/" exact component={BurgerBuilder} />
+          </Switch>
+        </Layout>
+      </div>
     );
   }
 }
 
-export default App
+export default App;
