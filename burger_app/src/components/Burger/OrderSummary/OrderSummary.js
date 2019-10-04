@@ -3,6 +3,7 @@ import Aux from "../../../hoc/Aux"
 import Button from "../../UI/Button/Button"
 
 const orderSummary = (props) => {
+    console.log("ingrediants in props",props.ingrediants)
     const ingrediants = Object.keys(props.ingrediants).map((ingrediantKey) => {
         return (<li key={ingrediantKey}><span style={{textTransform:"capitalize"}}>{ingrediantKey}</span> : {props.ingrediants[ingrediantKey]}</li>)
     })

@@ -15,12 +15,15 @@ const withErrorHandler = (WrapperComponent, axios) => {
             }
 
          requestInterceptor = axios.interceptors.request.use(req => {
+             console.log("req",req)
                 this.setState({
                     error:null
                 })
+                return req
             })
 
         responseInterceptor = axios.interceptors.response.use(null, error => {
+            console.log("error",error)
                 this.setState({
                     error:error
                 })

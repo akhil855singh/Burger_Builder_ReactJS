@@ -32,8 +32,9 @@ class BurgerBuilder extends Component {
 
     componentDidMount () {
         console.log(this.props);
-        axios.get( 'https://react-my-burger.firebaseio.com/ingredients.json' )
+        axios.get( 'https://react-burger-app-8842e.firebaseio.com/ingrediants.json' )
             .then( response => {
+                console.log("response of ingredients",response.data)
                 this.setState( { ingredients: response.data } );
             } )
             .catch( error => {
@@ -115,14 +116,14 @@ class BurgerBuilder extends Component {
         }
         let orderSummary = null;
         let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
-
+        console.log("this.state.ingredients",this.state.ingredients)
         if ( this.state.ingredients ) {
             burger = (
                 <Aux>
-                    <Burger ingredients={this.state.ingredients} />
+                    <Burger ingrediants={this.state.ingredients} />
                     <BuildControls
-                        ingredientAdded={this.addIngredientHandler}
-                        ingredientRemoved={this.removeIngredientHandler}
+                        ingrediantAdded={this.addIngredientHandler}
+                        ingrediantRemoved={this.removeIngredientHandler}
                         disabled={disabledInfo}
                         purchasable={this.state.purchasable}
                         ordered={this.purchaseHandler}
@@ -130,7 +131,7 @@ class BurgerBuilder extends Component {
                 </Aux>
             );
             orderSummary = <OrderSummary
-                ingredients={this.state.ingredients}
+                ingrediants={this.state.ingredients}
                 price={this.state.totalPrice}
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler} />;
